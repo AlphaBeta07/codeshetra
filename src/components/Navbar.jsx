@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -40,16 +41,17 @@ const Navbar = () => {
                                     {item.name.toUpperCase()}
                                 </a>
                             ))}
-                            <motion.a
+                            <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                href="https://docs.google.com/forms/d/e/1FAIpQLSeH7cYaVakogGhd8AVqLxGV1CXn3wZB1n-ibn7aEjwgF_1fQQ/viewform"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-saffron hover:bg-orange-600 text-black font-cyber font-bold py-2 px-4 rounded clip-path-slant inline-block"
                             >
-                                JOIN NOW
-                            </motion.a>
+                                <Link
+                                    to="/register"
+                                    className="bg-saffron hover:bg-orange-600 text-black font-cyber font-bold py-2 px-4 rounded clip-path-slant inline-block"
+                                >
+                                    JOIN NOW
+                                </Link>
+                            </motion.div>
                         </div>
                     </div>
 
@@ -83,14 +85,13 @@ const Navbar = () => {
                                 {item.name.toUpperCase()}
                             </a>
                         ))}
-                        <a
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSeH7cYaVakogGhd8AVqLxGV1CXn3wZB1n-ibn7aEjwgF_1fQQ/viewform"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <Link
+                            to="/register"
                             className="w-full text-center block bg-saffron text-black font-cyber font-bold py-2 px-3 rounded mt-4"
+                            onClick={() => setIsOpen(false)}
                         >
                             JOIN NOW
-                        </a>
+                        </Link>
                     </div>
                 </motion.div>
             )}

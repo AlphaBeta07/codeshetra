@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Sword, Cpu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     const container = useRef();
@@ -96,17 +97,15 @@ const Hero = () => {
                 </p>
 
                 <div ref={buttonsRef} className="flex flex-col md:flex-row gap-6 justify-center items-center">
-                    <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSeH7cYaVakogGhd8AVqLxGV1CXn3wZB1n-ibn7aEjwgF_1fQQ/viewform"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        to="/register"
                         className="group relative px-10 py-4 bg-transparent border border-saffron text-saffron font-ancient font-bold text-xl tracking-wider overflow-hidden hover:text-black transition-colors duration-300 inline-block"
                     >
                         <div className="absolute inset-0 w-0 bg-saffron transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                         <span className="relative flex items-center gap-2">
                             <Sword className="w-6 h-6 rotate-90" /> JOIN THE BATTLE
                         </span>
-                    </a>
+                    </Link>
                     {/* 
                     <button className="px-10 py-4 bg-transparent border border-neon-blue/30 text-neon-blue font-cyber text-lg hover:bg-neon-blue/10 transition-colors uppercase tracking-widest">
                         EXPLORE PROTOCOLS
