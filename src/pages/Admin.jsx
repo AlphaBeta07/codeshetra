@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import CosmicBackground from '../components/CosmicBackground';
@@ -6,8 +6,8 @@ import { Download, Users, Briefcase, Lock } from 'lucide-react';
 
 const Admin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [idInput, setIdInput] = useState('');
-    const [passwordInput, setPasswordInput] = useState('');
+    const idRef = useRef();
+    const passwordRef = useRef();
 
     const [registrations, setRegistrations] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ const Admin = () => {
     const navigate = useNavigate();
 
     const adminId = import.meta.env.VITE_ADMIN_ID || 'admin';
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
+    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'password2328';
 
     useEffect(() => {
         if (!isAuthenticated) return;
@@ -43,6 +43,8 @@ const Admin = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        const idInput = idRef.current?.value || '';
+        const passwordInput = passwordRef.current?.value || '';
         if (idInput === adminId && passwordInput === adminPassword) {
             setIsAuthenticated(true);
             setError(null);
@@ -73,8 +75,7 @@ const Admin = () => {
                             <label className="block text-sm font-tech text-gray-400 mb-1">Admin ID</label>
                             <input
                                 type="text"
-                                value={idInput}
-                                onChange={(e) => setIdInput(e.target.value)}
+                                ref={idRef}
                                 className="w-full bg-black/50 border border-white/20 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue focus:ring-1 focus:ring-neon-blue font-tech"
                                 placeholder="Enter ID"
                                 required
@@ -84,8 +85,7 @@ const Admin = () => {
                             <label className="block text-sm font-tech text-gray-400 mb-1">Password</label>
                             <input
                                 type="password"
-                                value={passwordInput}
-                                onChange={(e) => setPasswordInput(e.target.value)}
+                                ref={passwordRef}
                                 className="w-full bg-black/50 border border-white/20 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue focus:ring-1 focus:ring-neon-blue font-tech"
                                 placeholder="Enter Password"
                                 required
